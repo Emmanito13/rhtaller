@@ -1,85 +1,83 @@
 <?php
-session_unset();
+
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="styles/login.css">
-    <title>UBIEXPRESS</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="//hst-api.wialon.com/wsdk/script/wialon.js"></script>
-    <script type="text/javascript" src="https://hst-api.wialon.com/wsdk/script/wialon.js"></script>
-    <script type="text/javascript" src=" https://kit-api.wialon.com"></script>
+    <!-- jquery -->
+    <script src="lib/jQuery/jquery-3.6.3.min.js"></script>
+    <!-- Toastr -->
+
+    <!-- CSS -->
     <link rel="stylesheet" href="lib/Toastr/toastr.min.css">
+    <!-- JavaScript -->
     <script src="lib/Toastr/toastr.min.js"></script>
+    <!-- Bootstrap -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="lib/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="lib/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
+    <!-- icons -->
+    <link rel="stylesheet" href="lib/bootstrap-5.2.3-dist/css/bootstrap-icons-1.10.2/bootstrap-icons.css">
+
+    
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Compiled iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- FontAwesone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles/login.css">
 </head>
 
 <body>
-    <div id="contenedor">
-        <div class="container">
-            <form id="loginform" class="form-horizontal" action="index.php" method="post">
-                <div id="contenedorcentrado">
-                    <div id="derecho">
-                        <div class="titulo">
-                            <h1>UbiExpress</h1>
+    <div class="container contenedor-principal">
+        <div class="row">
+            <div>
+                
+                    <div class="row justify-content-center py-0">
+                        <div class="col-auto text-center">
+                            <img id="imgLogo" src="img/logo_georgio.png" alt="Not picture">
+                        </div>
+                        <div class="col-auto text-center">
+                            <h2 class="titulo-login">RECURSOS HUMANOS</h2>
                         </div>
                     </div>
-                    <div id="login">
-                        <div class="form-group col-sm-10">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Usuario</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="usuario" id="inputEmail3" placeholder="Usuario" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Contraseña</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="contraseña" id="inputPassword3" placeholder="Contraseña" required>
-                            </div>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="Recordar" /><label>Recordar</label>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" name="btn_login" class="btn btn-default">Ingresar</button>
-                            </div>
-                        </div>
+                    <p class="nota-login">Ingrese sus datos para iniciar sesión</p>
+                    <div class="input-field">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input name="usuario" id="user" type="text" class="validate" required>
+                        <label for="user">Usuario</label>
                     </div>
-            </form>
+                    <div class="input-field">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input name="contra" id="pass" type="password" class="validate" required>
+                        <label for="pass">Contraseña</label>
+                    </div>
+                    <div class="btn-container">
+                        <button id="ingresar" name="ingresar" onclick="login()" class=" btn btn-ingresar"><i class="material-icons right">login</i>Ingresar</button>
+                    </div>
+                
+            </div>
         </div>
     </div>
 </body>
 
+<!-- JAVASCRIPT -->
+<script src="js/login.js"></script>
+<!-- /JAVASCRIPT -->
+
 </html>
-
-<?php
-
-include_once("config/wialon.php");
-
-$wialon_api = new Wialon();
-
-if (isset($_POST['btn_login'])) {
-    $usuario = $_POST['usuario'];
-    $password = $_POST['contraseña'];
-    // old username and password login is deprecated, use token login
-    $token = '2f0a8929ad515bb67157ead976434d583BCAEAF887B0551E3F8C07590A59533902946CAA';
-    $result = $wialon_api->login($token);
-    $json = json_decode($result, true);
-
-    if ($usuario == $json['au'] && $password == 'PRUEBAS12') {
-        session_start();
-        $_SESSION['user'] = $json['au'];
-        header("Location: views/menu.php");
-    } else {
-        echo '
-    <script>
-        toastr["error"]("Revise si el uauario y contraseña estan correctos", "Datos incorrectos");
-    </script>';
-    }
-}
-
-?>
