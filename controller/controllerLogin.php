@@ -5,12 +5,13 @@ require "Request.php";
 
 $request = new Request();
 
-if(empty($_POST['user']) || empty($_POST['pass'])){
+if(empty($_POST['user']) || empty($_POST['pass'])){ 
     echo json_encode('requerid');
 }else{
     switch($request->login($_POST['user'],$_POST['pass'])){
         case 'successs':
             echo json_encode('successs');
+            $_SESSION['username'] = 'true';
             break;
 
         case 'fail':
