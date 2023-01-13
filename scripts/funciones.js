@@ -378,8 +378,8 @@ const agregaTurno = (turno) => {
             if (r == 1) {
                 //alert("Turno ingresado exitosamente");
                 //window.location.href = 'indexMenu.php';
-                alertify.success("Turno ingresado exitosamente");
                 $('#modalTurno').modal('hide');
+                alertify.success("Turno ingresado exitosamente");
                 llenarTurnos();
             } else {
                 alertify.error("Algo mal ocurrio al insertar turno");
@@ -396,11 +396,10 @@ const agregaContrato = (contrato) => {
         url: "agregaContrato.php",
         data: cadena,
         success: function (r) {
-            if (r == 1) {
-                alert("Contrato ingresado exitosamente");
-                window.location.href = 'indexMenu.php';
-                // alertify.success("Contrato ingresado exitosamente");                
-                // $('#modalNuevo').load('modalNuevo.php');
+            if (r == 1) {                                
+                $('#modalContrato').modal('hide');
+                alertify.success("Contrato ingresado exitosamente");
+                llenarContratos();
             } else {
                 alertify.error("Algo mal ocurrio al insertar contrato");
                 alert(r);
@@ -417,10 +416,9 @@ const agregaEmpresa = (empresa) => {
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                alert("Empresa ingresada exitosamente");
-                window.location.href = 'indexMenu.php';
-                //alertify.success("Empresa ingresada exitosamente");                
-                //$('#modalNuevo').load('modalNuevo.php');
+                $('#modalEmpresa').modal('hide');
+                alertify.success("Empresa ingresada exitosamente");
+                llenarEmpresas();
             } else {
                 alertify.error("Algo mal ocurrio al insertar empresa");
                 alert(r);
@@ -437,10 +435,9 @@ const agregaDepa = (depa) => {
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                alert("Departamento ingresado exitosamente");
-                window.location.href = 'indexMenu.php';
-                //alertify.success("Departamento ingresado exitosamente");
-                //$('#modalNuevo').load('modalNuevo.php');
+                $('#modalDepartamento').modal('hide');                
+                alertify.success("Departamento ingresado exitosamente");
+                llenarDepartamentos();
             } else {
                 alertify.error("Algo mal ocurrio al insertar departamento");
                 alert(r);
@@ -457,10 +454,9 @@ const agregaPuesto = (puesto) => {
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                alert("Puesto ingresado exitosamente");
-                window.location.href = 'indexMenu.php';
-                //alertify.success("Puesto ingresado exitosamente");
-                //$('#modalNuevo').load('modalNuevo.php');
+                $('#modalPuesto').modal('hide');
+                alertify.success("Puesto ingresado exitosamente");
+                llenarPuestos();                
             } else {
                 alertify.error("Algo mal ocurrio al insertar puesto");
                 alert(r);
@@ -477,10 +473,9 @@ const agregaJefe = (jefe) => {
         data: cadena,
         success: function (r) {
             if (r == 1) {
-                alert("Jefe ingresado exitosamente");
-                window.location.href = 'indexMenu.php';
-                //alertify.success("Jefe ingresado exitosamente").delay(5);
-                //$('#modalNuevo').load('modalNuevo.php');
+                $('#modalJefe').modal('hide');
+                alertify.success("Jefe ingresado exitosamente");
+                llenarJefes();
             } else {
                 alertify.error("Algo mal ocurrio al insertar jefe");
                 alert(r);
@@ -768,7 +763,7 @@ const llenarContratos = () =>{
     $('#contrato').empty();
     $.ajax({        
         type: 'POST',
-        url: 'controller/controller.php?operador=listar_turnos',
+        url: 'controller/controller.php?operador=listar_contratos',
         beforeSend: function () { },
         success: function (response) {            
             if (JSON.parse(response).length == 0) {                
@@ -788,7 +783,7 @@ const llenarEmpresas = () =>{
     $('#empresa').empty();
     $.ajax({        
         type: 'POST',
-        url: 'controller/controller.php?operador=listar_turnos',
+        url: 'controller/controller.php?operador=listar_empresas',
         beforeSend: function () { },
         success: function (response) {            
             if (JSON.parse(response).length == 0) {                
@@ -808,7 +803,7 @@ const llenarDepartamentos = () =>{
     $('#departamento').empty();
     $.ajax({        
         type: 'POST',
-        url: 'controller/controller.php?operador=listar_turnos',
+        url: 'controller/controller.php?operador=listar_departamentos',
         beforeSend: function () { },
         success: function (response) {            
             if (JSON.parse(response).length == 0) {                
@@ -828,7 +823,7 @@ const llenarPuestos = () =>{
     $('#puesto').empty();
     $.ajax({        
         type: 'POST',
-        url: 'controller/controller.php?operador=listar_turnos',
+        url: 'controller/controller.php?operador=listar_puestos',
         beforeSend: function () { },
         success: function (response) {            
             if (JSON.parse(response).length == 0) {                
@@ -848,7 +843,7 @@ const llenarJefes = () =>{
     $('#jefe').empty();
     $.ajax({        
         type: 'POST',
-        url: 'controller/controller.php?operador=listar_turnos',
+        url: 'controller/controller.php?operador=listar_jefes',
         beforeSend: function () { },
         success: function (response) {            
             if (JSON.parse(response).length == 0) {                

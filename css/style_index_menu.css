@@ -71,3 +71,8 @@ img {
 span{
     color: red;
 }
+
+#logo-taller{
+    width: 300px;
+    height: auto;
+}

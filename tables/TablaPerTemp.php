@@ -128,7 +128,7 @@
                 "lengthMenu": "Mostrar _MENU_ registros",
                 "search": "Buscar:",
                 "info": "Mostrar página _PAGE_ de _PAGES_",
-                "emptyTable": "No hay documentos",
+                "emptyTable": "No hay empleados dispinibles",
                 "zeroRecords": "No hay coincidencias",
                 "infoFiltered": "(filtrados _MAX_ del total de registros)"
             }

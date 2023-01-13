@@ -6,7 +6,6 @@ include_once 'config/validateUser.php';
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <title>Recuros humanos</title>
     <link rel="shortcut icon" href="pictures/emma georgio-01-01.jpg" type="image/x-icon">
@@ -14,15 +13,26 @@ include_once 'config/validateUser.php';
     <script src="scripts/funciones.js"></script>
     <?php include('lib/lib.php') ?>
     <link rel="stylesheet" href="css/style_index_menu.css">
-
 </head>
 
 <body BGCOLOR=#CCC>
 
     <div id="contenido">
-        <div class="fw-bold container-header py-5" style="text-align:center; color: #203C6C;">
-            <h1><input type="image" src="pictures/rh.png" width="2.5%" height="auto" tabindex="-1"> Recursos humanos</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-auto text-center fw-bold">
+                <img id="logo-taller" src="pictures/logo_georgio.png" alt="whithout picture">
+            </div>
         </div>
+
+        <div class="row justify-content-center pt-2 pb-5">
+            <div class="col-auto text-center fw-bold">
+                <h1><input type="image" src="pictures/rh.png" width="4%" height="auto" tabindex="-1"> Recursos humanos</h1>
+            </div>
+        </div>
+        <!-- <div class="fw-bold container-header py-5" style="text-align:center; color: #203C6C;">
+            <h1><input type="image" src="pictures/rh.png" width="2.5%" height="auto" tabindex="-1"> Recursos humanos</h1>
+        </div> -->
         <div class="container-fluid">
             <div class="row">
                 <div class=" col">
