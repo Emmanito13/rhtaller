@@ -102,7 +102,7 @@
                     $fI = date_create($fechaI);
                     $Factual = date_create(date("d-m-Y"));                 
                     $diferencia = date_diff($fI, $Factual);
-                    $timeBirthday = strtotime($fechaN); 
+                    $timeBirthday = strtotime($fechaN);
                     if ($diferencia->y >= 1) {
                         $hidden = '';
                     } else {

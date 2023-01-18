@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <center>
-                                        <label>Fecha de ingreso Abarrotera:<span>*</span></label>
+                                        <label>Fecha de ingreso Taller:<span>*</span></label>
                                     </center>
                                     <input type="date" name="fechaIAbarrotera" id="fechaIAbarrotera" class="form-control input-sm" required>
                                 </div>
