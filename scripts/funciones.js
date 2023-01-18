@@ -49,83 +49,112 @@ const cambiaGenero = () => {
 }
 
 
-const verTurno = (turno) => {
-    TurnoOptions = [];
-    $('select[name=turno] option').each(function () {
-        TurnoOptions.push($(this).html())
-    });
-    for (let i = 1; i < TurnoOptions.length; i++) {
-        if (turno == TurnoOptions[i]) {
-            document.getElementById('turno').value = i;
-        }
-    }
-}
+const verTurno = async (turno) => {
 
-const verContrato = (contrato) => {
-    ContratoOptions = [];
-    $('select[name=contrato] option').each(function () {
-        ContratoOptions.push($(this).html())
-    });
-    for (let i = 1; i < ContratoOptions.length; i++) {
-        if (contrato == ContratoOptions[i]) {
-            document.getElementById('contrato').value = i;
-        }
-    }
-
-}
-
-const verEmpresa = (empresa) => {
-    empresaOptions = [];
-    $('select[name=empresa] option').each(function () {
-        empresaOptions.push($(this).html())
-    });
-    for (let i = 1; i < empresaOptions.length; i++) {
-        if (empresa == empresaOptions[i]) {
-            document.getElementById('empresa').value = i;
-        }
-    }
-
-}
-
-const verDepartamento = (depa) => {
-    depaOptions = [];
-    $('select[name=departamento] option').each(function () {
-        depaOptions.push($(this).html())
-    });
-    for (let i = 1; i < depaOptions.length; i++) {
-        if (depa == depaOptions[i]) {
-            document.getElementById('departamento').value = i;
-        }
-    }
+    const response = await getTurnoByName(turno);    
+    document.getElementById('turno').value = response[0].idTurno;    
 }
 
 
-const verPuesto = (puesto) => {
+const verContrato = async (contrato) => {
 
-    puestoOptions = [];
-    $('select[name=puesto] option').each(function () {
-        puestoOptions.push($(this).html())
-    });
-    for (let i = 1; i < puestoOptions.length; i++) {
-        if (puesto == puestoOptions[i]) {
-            document.getElementById('puesto').value = i;
-        }
-    }
+    const response = await getContratoByName(contrato);    
+    document.getElementById('contrato').value = response[0].idContrato;   
+}
+
+const verEmpresa = async (empresa) => {
+
+    const response = await getEmpresaByName(empresa);    
+    document.getElementById('empresa').value = response[0].idEmpresa;
+    
+}
+
+const verDepartamento = async (depa) => {
+
+    const response = await getDepaByName(depa);    
+    document.getElementById('departamento').value = response[0].idDepa;   
 }
 
 
-const verJefe = (jefe) => {
+const verPuesto = async (puesto) => {
 
-    jefeOptions = [];
-    $('select[name=jefe] option').each(function () {
-        jefeOptions.push($(this).html())
-    });
-    for (let i = 1; i < jefeOptions.length; i++) {
-        if (jefe == jefeOptions[i]) {
-            document.getElementById('jefe').value = i;
-        }
-    }
+    const response = await getPuestoByName(puesto);    
+    document.getElementById('puesto').value = response[0].idPuesto;    
+}
 
+
+const verJefe = async (jefe) => {
+
+    const response = await getJefeByName(jefe);    
+    document.getElementById('jefe').value = response[0].idJefe;  
+
+}
+
+function getTurnoByName(name) {
+    const data = new URLSearchParams(`nombreTurno=${name}`);
+    const options = {
+        method: 'POST',
+        body: data
+    };
+    return fetch('controller/controller.php?operador=turno_by_name', options)
+        .then(res => res.json())
+        .then(data => data);
+}
+
+function getContratoByName(name) {
+    const data = new URLSearchParams(`nombreContrato=${name}`);
+    const options = {
+        method: 'POST',
+        body: data
+    };
+    return fetch('controller/controller.php?operador=contrato_by_name', options)
+        .then(res => res.json())
+        .then(data => data);
+}
+
+function getEmpresaByName(name) {
+    const data = new URLSearchParams(`nombreEmpresa=${name}`);
+    const options = {
+        method: 'POST',
+        body: data
+    };
+    return fetch('controller/controller.php?operador=empresa_by_name', options)
+        .then(res => res.json())
+        .then(data => data);
+}
+
+
+function getDepaByName(name) {
+    const data = new URLSearchParams(`nombreDepa=${name}`);
+    const options = {
+        method: 'POST',
+        body: data
+    };
+    return fetch('controller/controller.php?operador=depa_by_name', options)
+        .then(res => res.json())
+        .then(data => data);
+}
+
+function getPuestoByName(name) {
+    const data = new URLSearchParams(`nombrePuesto=${name}`);
+    const options = {
+        method: 'POST',
+        body: data
+    };
+    return fetch('controller/controller.php?operador=puesto_by_name', options)
+        .then(res => res.json())
+        .then(data => data);
+}
+
+function getJefeByName(name) {
+    const data = new URLSearchParams(`nombreJefe=${name}`);
+    const options = {
+        method: 'POST',
+        body: data
+    };
+    return fetch('controller/controller.php?operador=jefe_by_name', options)
+        .then(res => res.json())
+        .then(data => data);
 }
 
 function preguntarSiNo(id, name, motivo, fechaB, observa, liquida) {

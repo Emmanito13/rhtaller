@@ -112,6 +112,114 @@ class InterfaceRH
         }
     }
 
+    function getTurnoByName($name){
+        $query = "SELECT * FROM turno WHERE horario = ?";
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1,$name);
+        if ($result->execute()) {
+            if ($result->rowCount() > 0) {
+                while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return $datos = [];
+            }
+        }else{            
+            return $datos = [];
+        }
+    }
+
+    function getContratoByName($name){
+        $query = "SELECT * FROM contrato WHERE nombre = ?";
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1,$name);
+        if ($result->execute()) {
+            if ($result->rowCount() > 0) {
+                while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return $datos = [];
+            }
+        }else{            
+            return $datos = [];
+        }
+    }
+
+    function getEmpresaByName($name){
+        $query = "SELECT * FROM empresa WHERE nombre = ?";
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1,$name);
+        if ($result->execute()) {
+            if ($result->rowCount() > 0) {
+                while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return $datos = [];
+            }
+        }else{            
+            return $datos = [];
+        }
+    }
+
+    function getDepaByName($name){
+        $query = "SELECT * FROM departamento WHERE nombre = ?";
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1,$name);
+        if ($result->execute()) {
+            if ($result->rowCount() > 0) {
+                while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return $datos = [];
+            }
+        }else{            
+            return $datos = [];
+        }
+    }
+
+    function getPuestoByName($name){
+        $query = "SELECT * FROM puesto WHERE nombre = ?";
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1,$name);
+        if ($result->execute()) {
+            if ($result->rowCount() > 0) {
+                while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return $datos = [];
+            }
+        }else{            
+            return $datos = [];
+        }
+    }
+
+    function getJefeByName($name){
+        $query = "SELECT * FROM jefe WHERE nombre = ?";
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1,$name);
+        if ($result->execute()) {
+            if ($result->rowCount() > 0) {
+                while ($fila = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $datos[] = $fila;
+                }
+                return $datos;
+            } else {
+                return $datos = [];
+            }
+        }else{            
+            return $datos = [];
+        }
+    }
+
 
 }
 
