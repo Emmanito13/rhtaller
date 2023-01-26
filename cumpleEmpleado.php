@@ -1,4 +1,6 @@
 <?php
+session_start();
+include_once 'config/validateUser.php';
 $idE = $_GET['idE'];
 $fecha = $_GET['fecha'];
 ?>
