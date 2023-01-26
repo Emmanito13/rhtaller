@@ -10,18 +10,21 @@ class Request{
 
     function login($user, $pass){
         
-        $query = "SELECT * FROM usuarios WHERE idusuario = ? AND pasusuario = ?";
+        $query = "SELECT * FROM usuarios WHERE username = ? AND pass = ?";
         $result = $this->cnx->prepare($query);
         $result->bindParam(1,$user);
         $result->bindParam(2,$pass);
         if ($result->execute()) {
             if ($result->rowCount() > 0) {
-                return 'successs';
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;                    
+                }
+                return $data;
             }else{
-                return 'fail';
-            }       
+                $data = [];
+            }    
         }else{
-            return 'error';
+            return $data = [];
         }
     }
 

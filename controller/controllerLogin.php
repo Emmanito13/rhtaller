@@ -8,20 +8,14 @@ $request = new Request();
 if(empty($_POST['user']) || empty($_POST['pass'])){ 
     echo json_encode('requerid');
 }else{
-    switch($request->login($_POST['user'],$_POST['pass'])){
-        case 'successs':
-            echo json_encode('successs');
-            $_SESSION['username'] = 'true';
-            break;
-
-        case 'fail':
-            echo json_encode('fail');
-            break;
-
-        case 'error':
-            echo json_encode('error');
-            break;
-    }
+    if(!empty($request->login($_POST['user'],$_POST['pass']))){
+        $data = $request->login($_POST['user'],$_POST['pass']);
+        $_SESSION['log'] = 'true';
+        $_SESSION['rol'] = $data[0]['rol'];
+        echo json_encode($data);
+    }else{
+        echo json_encode('empty');
+    }    
 }
 
 ?>
