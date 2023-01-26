@@ -1,4 +1,6 @@
 <?php
+session_start();
+include_once 'config/validateUser.php';
 date_default_timezone_set('America/Mexico_City') ;
 include('lib/lib.php');
 require_once("conexion.php");
