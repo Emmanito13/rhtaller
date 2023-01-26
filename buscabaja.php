@@ -1,3 +1,7 @@
+<?php
+session_start();
+include_once 'config/validateUser.php';
+?>
 <!DOCTYPE html>
 <html>
 
