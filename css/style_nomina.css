@@ -1,0 +1,40 @@
+.img-title-nomina{
+    width: 47px;
+    height: auto;
+}
+
+.title_nomina{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    font-style: normal;
+    color: black;
+}
+
+.total{
+    box-shadow: 0px 0px 10px 0px black;
+    border-radius: 13px;    
+}
+
+.input-mdays{
+    width: 65px;
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+.input-prestamo{
+    width: 95px;
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+.input-infonavit{
+    box-shadow: 0px 0px 5px 0px black;
+    width: 95px;
+}
+
+.bg-m{
+    background-color: rgba(36, 36, 37, 0.753);
+}
+
+.check-todo{
+    box-shadow: 0px 0px 5px 0px black;    
+}

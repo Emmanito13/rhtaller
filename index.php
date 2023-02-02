@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="pictures/emma georgio-01-01.jpg" type="image/x-icon">
     <title>LOGIN</title>
 
     <!-- Compiled and minified CSS -->
@@ -62,6 +63,7 @@
                     <i class="material-icons prefix">vpn_key</i>
                     <input name="contra" id="pass" type="password" class="validate" required>
                     <label for="pass">Contraseña</label>
+                    <span id="viewPass" toggle="#password" class="field-icon toggle-password"><span class="material-icons">visibility</span></span>
                 </div>
                 <div class="btn-container">
                     <button id="ingresar" name="ingresar" onclick="login()" class=" btn btn-ingresar"><i class="material-icons right">login</i>Ingresar</button>

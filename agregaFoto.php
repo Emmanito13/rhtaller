@@ -12,7 +12,7 @@ require_once "conexion.php";
         if ($ruta_default_Frente != "default-img.png") {
             unlink($ruta.$ruta_default_Frente);
         }        
-        $frente = $_FILES['f']["name"];
+        $frente = bin2hex(random_bytes(15)) . '.' . pathinfo($_FILES['f']["name"],PATHINFO_EXTENSION);
         move_uploaded_file($_FILES['f']["tmp_name"],$ruta.$frente);        
     }else{
         if($ruta_default_Frente == "" || $ruta_default_Frente == "default-img.png" ){
@@ -26,7 +26,7 @@ require_once "conexion.php";
         if ($ruta_default_Perfil != "default-img.png") {
             unlink($ruta.$ruta_default_Perfil);
         }
-        $perfil = $_FILES['p']["name"];
+        $perfil = bin2hex(random_bytes(15)) . '.' . pathinfo($_FILES['p']["name"],PATHINFO_EXTENSION);
         move_uploaded_file($_FILES['p']["tmp_name"],$ruta.$perfil);        
     }else{
         if($ruta_default_Perfil == "" || $ruta_default_Perfil == "default-img.png"){
@@ -40,7 +40,7 @@ require_once "conexion.php";
         if ($ruta_default_Ine != "default-img.png") {
             unlink($ruta.$ruta_default_Ine);
         }
-        $ine = $_FILES['i']["name"];
+        $ine = bin2hex(random_bytes(15)) . '.' . pathinfo($_FILES['i']["name"],PATHINFO_EXTENSION);
         move_uploaded_file($_FILES['i']["tmp_name"],$ruta.$ine);        
     }else{
         if($ruta_default_Ine == "" || $ruta_default_Ine == "default-img.png" ){

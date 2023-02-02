@@ -37,6 +37,13 @@
 
 <!-- ICONOS FONTAWESOME -->
 
+<!-- Toastr -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="lib/Toastr/toastr.min.css">
+    <!-- JavaScript -->
+    <script src="lib/Toastr/toastr.min.js"></script>
+
 
 <?php
 include('fpdf/fpdf.php');

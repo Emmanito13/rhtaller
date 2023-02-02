@@ -360,7 +360,34 @@ const agregaFoto = (fotos) => {
     $('#rutaINE').val(f[3]);
 }
 
-const agregarFotos = (id, frente, perfil, ine, rutaF, rutaP, rutaI) => {
+const comprimirImagen = (imagenComoArchivo, porcentajeCalidad) => {
+    /*
+        https://parzibyte.me/blog
+    */
+    return new Promise((resolve, reject) => {
+        const $canvas = document.createElement("canvas");
+        const imagen = new Image();
+        imagen.onload = () => {
+            $canvas.width = imagen.width;
+            $canvas.height = imagen.height;
+            $canvas.getContext("2d").drawImage(imagen, 0, 0);
+            $canvas.toBlob(
+                (blob) => {
+                    if (blob === null) {
+                        return reject(blob);
+                    } else {
+                        resolve(blob);
+                    }
+                },
+                "image/jpeg",
+                porcentajeCalidad / 100
+            );
+        };
+        imagen.src = URL.createObjectURL(imagenComoArchivo);
+    });
+};
+
+const agregarFotos = async (id, frente, perfil, ine, rutaF, rutaP, rutaI) => {
     var idE = id;
     var fotoFrente = frente;
     var fotoPerfil = perfil;
@@ -370,9 +397,9 @@ const agregarFotos = (id, frente, perfil, ine, rutaF, rutaP, rutaI) => {
     var rutaINE = rutaI;
     var formData = new FormData();
     formData.append('d', idE);
-    formData.append('f', fotoFrente);
-    formData.append('p', fotoPerfil);
-    formData.append('i', fotoINE);
+    formData.append('f', (fotoFrente == '') ? fotoFrente : new File([await comprimirImagen(fotoFrente)],fotoFrente.name));
+    formData.append('p', (fotoPerfil == '') ? fotoPerfil : new File([await comprimirImagen(fotoPerfil)],fotoPerfil.name));
+    formData.append('i', (fotoINE == '') ? fotoINE : new File([await comprimirImagen(fotoINE)],fotoINE.name));
     formData.append('x', rutaFrente);
     formData.append('y', rutaPerfil);
     formData.append('z', rutaINE);

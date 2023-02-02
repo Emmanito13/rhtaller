@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'config/validateUser.php';
+$rol = $_SESSION['rol'];
 ?>
 <!doctype html>
 <html lang="es">
@@ -80,6 +81,17 @@ include_once 'config/validateUser.php';
 
                 <div class="col">
                     <div class="card">
+                        <div class="card-header" id="ch-w" style="background: rgb(77,140,40);">
+                            <h4 font-size: auto;>Nómina</h4>
+                        </div>
+                        <a href="nomina.php">
+                            <img src="pictures/nomina.png" style="text-align: center;" width="110" height="auto">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
                         <div class="card-header" id="ch-w" style="background: rgb(21,40,54);">
                             <h4>Bajas</h4>
                         </div>
@@ -103,8 +115,24 @@ include_once 'config/validateUser.php';
         </div>
     </div>
 
+    <?php 
+        if ($rol == 'SUPERADMIN') {
+        ?>
+            <div class="contenedor-gestor">
+                <div class="gestion" onclick="goGest()">
+                    <i class="fa-solid fa-key"></i> Gestión de usuarios y/o contraseñas
+                </div>
+            </div>
+        <?php
+        }         
+    ?>   
+
     <?php include 'modals/modalNuevo.php'; ?>
 
 </body>
-
+    <script>
+        const goGest = () => {
+            window.location.href = 'gestionContraseñas.php';
+        }
+    </script>
 </html>

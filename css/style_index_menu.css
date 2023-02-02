@@ -72,6 +72,32 @@ span{
     color: red;
 }
 
+.contenedor-gestor{
+    display: flex;
+    width: 300px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 13%;    
+}
+
+.gestion{
+    height: auto;
+    box-shadow: 0px 0px 10px 0px black;
+    border-radius: 10px;
+    background-color: rgb(28,63,97);
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.gestion:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
 #logo-taller{
     width: 300px;
     height: auto;

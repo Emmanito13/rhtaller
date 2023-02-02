@@ -1,0 +1,36 @@
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.img-title-gestion{
+    width: 55px;
+    height: auto;
+}
+
+.title_gestion{
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#messageSamePass{
+    color: red;
+}
+
+.viewPass{
+    display: flex;
+    width: 25;
+    height: 25;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.viewPass:hover{
+    background-color: rgba(221, 228, 235, 0.658);    
+}
+
+.btn-close-bg{
+    color: white;
+    background-color: white;
+}

@@ -1,5 +1,5 @@
-body {    
-    font-family: 'Arial', sans-serif;    
+body {
+    font-family: 'Arial', sans-serif;
 }
 
 .contenedor-principal {
@@ -19,7 +19,7 @@ form {
 }
 
 .titulo-login {
-    font-size: 30px;    
+    font-size: 30px;
     text-align: center;
     font-weight: bold;
 }
@@ -32,10 +32,10 @@ form {
 }
 
 .btn-container {
-    text-align: center;    
+    text-align: center;
 }
 
-.btn-container:hover{
+.btn-container:hover {
     color: black;
 }
 
@@ -45,24 +45,35 @@ form {
     color: white;
 }
 
-#imgLogo{
-    width: 250px;
+#imgLogo {
+    width: 200px;
     height: auto;
 }
+
 /*animaciones*/
 form p {
     animation-duration: 1s;
     animation-name: slidein;
-  }
-  @keyframes slidein {
+}
+
+@keyframes slidein {
     from {
-      margin-left: 10%;
-      width: 300%;
-      color: transparent;
+        margin-left: 10%;
+        width: 300%;
+        color: transparent;
     }
 
     to {
-      margin-left: 0%;
-      width: 100%;
+        margin-left: 0%;
+        width: 100%;
     }
-  }
+}
+
+span.field-icon {
+    float: right;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    z-index: 2;
+}

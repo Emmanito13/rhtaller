@@ -31,54 +31,29 @@ include 'lib/lib.php';
             </div>
             <div class="col-sm-4">
                 <div class="list-group">
-
-                    <!-- <a href="infoEmple2.php" class="list-group-item list-group-item-action list-group-item-warning">Datos de un Empleado</a>
-                    <a href="buscafecha.php" class="list-group-item list-group-item-action list-group-item-secondary">Lista de Asistencia</a>
-                    <a href="listaprob.php" class="list-group-item list-group-item-action list-group-item-warning">Lista de Asistencia EXT</a>
-                    <a href="verire.php" class="list-group-item list-group-item-action list-group-item-secondary">Lista para Reloj V.</a>
-                    <a href="perfem.php" class="list-group-item list-group-item-action list-group-item-warning">Lista de personal Femenino</a>
-                    <a href="permas.php" class="list-group-item list-group-item-action list-group-item-secondary">Lista de personal Masculino</a>
-                    <a href="lifirma.php" class="list-group-item list-group-item-action list-group-item-warning">Lista para firmas</a>
-                    <a href="limss.php" class="list-group-item list-group-item-action list-group-item-secondary">Lista IMSS</a>
-                    <a href="Noimss.php" class="list-group-item list-group-item-action list-group-item-warning">Personal sin IMSS</a>
-                    <a href="cumple.html" class="list-group-item list-group-item-action list-group-item-secondary">Lista de Cumpleaños</a>
-                    <a href="fechaingresos.html" class="list-group-item list-group-item-action list-group-item-warning">Lista de Ingresos de Personal</a>
-                    <a href="dep.html" class="list-group-item list-group-item-action list-group-item-secondary">Personal por Departamento</a>
-                    <a href="baj.php" class="list-group-item list-group-item-action list-group-item-warning">Bajas por rango de fechas</a>
-                    <a href="esa.php" class="list-group-item list-group-item-action list-group-item-secondary">lista de Ingreso y puestos</a>
-                    <a href="encargad.php" class="list-group-item list-group-item-action list-group-item-warning">lista de personal a cargo</a>
-                    <a href="nomina.php" class="list-group-item list-group-item-action list-group-item-secondary">Gestion de Nomina</a>
-                    <a href="nominadep.html" class="list-group-item list-group-item-action list-group-item-warning">Impresion Nomina por departamentos</a>
-                    <a href="week.php" class="list-group-item list-group-item-action list-group-item-secondary">Personal Fines de Semana</a>
-                    <a href="vacaciones.html" class="list-group-item list-group-item-action list-group-item-warning">Vacaciones</a>
-                    <a href="nomilu.php?opc=0" class="list-group-item list-group-item-action list-group-item-secondary">Nomina II</a>
-                    <a href="fechanomina.php" class="list-group-item list-group-item-action list-group-item-warning">Historial de Nominas</a> -->
-
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Datos de un Empleado</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Lista de Asistencia</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Lista de Asistencia EXT</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Lista para Reloj V.</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Lista de personal Femenino</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Lista de personal Masculino</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Lista para firmas</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Lista IMSS</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Personal sin IMSS</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Lista de Cumpleaños</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Lista de Ingresos de Personal</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Personal por Departamento</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Bajas por rango de fechas</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Lista de Ingreso y puestos</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Lista de personal a cargo</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Gestion de Nomina</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Impresion Nomina por departamentos</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Personal Fines de Semana</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-warning">Vacaciones</a>
-                    <a href="" class="list-group-item list-group-item-action list-group-item-secondary">Nomina II</a>
-                    <a href="fechanomina.php" class="list-group-item list-group-item-action list-group-item-warning">Historial de Nominas</a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#modalListaAsistencia" onclick="modalDepa()" class="list-group-item list-group-item-action list-group-item-secondary">Lista de Asistencia</a>                                        
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modalListaPerFem" onclick="modalFemenino()" class="list-group-item list-group-item-action list-group-item-warning">Lista de personal Femenino</a>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modalListaPerMasc" onclick="modalMasculino()" class="list-group-item list-group-item-action list-group-item-secondary">Lista de personal Masculino</a>                    
+                    <a href="formats/ListaImssPDF.php" class="list-group-item list-group-item-action list-group-item-warning">Lista IMSS</a>
+                    <a href="formats/ListaNoImssPDF.php" class="list-group-item list-group-item-action list-group-item-secondary">Personal sin IMSS</a>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modalListaCumple" class="list-group-item list-group-item-action list-group-item-warning">Lista de Cumpleaños</a>                                        
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<!-- MODALS -->
+<?php
+include_once 'modals/modalListaAsistencia.php';
+include_once 'modals/modalPerFemenino.php';
+include_once 'modals/modalPerMasculino.php';
+include_once 'modals/modalCumple.php';
+?>
+<!-- /MODALS -->
+
+<!-- JAVASCRIPT -->
+<script src="scripts/formatos.js"></script>
+<!-- JAVASCRIPT -->
 
 </html>
