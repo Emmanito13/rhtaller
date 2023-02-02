@@ -14,6 +14,7 @@ switch ($_REQUEST['opc']) {
                 $data = $request->login($_POST['user'],$request->encryption($_POST['pass']));
                 $_SESSION['log'] = 'true';
                 $_SESSION['rol'] = $data[0]['rol'];
+                $_SESSION['username'] = $data[0]['username'];
                 echo json_encode($data);
             }else{
                 echo json_encode('empty');

@@ -2,7 +2,8 @@
 
 session_start();
 require "Request.php";
-
+$username = $_SESSION['username'];
+$rol = $_SESSION['rol'];
 $request = new Request();
 
 switch ($_REQUEST["operador"]) {
@@ -17,9 +18,9 @@ switch ($_REQUEST["operador"]) {
                     "apellidos" => $data[$i]['lastname'],
                     "username" => $data[$i]['username'],
                     "rol" => $data[$i]['rol'],
-                    "editar" => editUserButton($data[$i]['idusuario']),
-                    "pass" => changePassButton($data[$i]['idusuario']),
-                    "eliminar" => deleteUserButton($data[$i]['idusuario']),
+                    "editar" => editUserButton($data[$i]['idusuario'], $rol, $data[$i]['rol'], $username, $data[$i]['username']),
+                    "pass" => changePassButton($data[$i]['idusuario'], $rol, $data[$i]['rol'], $username, $data[$i]['username']),
+                    "eliminar" => deleteUserButton($data[$i]['idusuario'], $rol, $data[$i]['rol'], $username, $data[$i]['username']),
                 );
             }
 
@@ -150,17 +151,58 @@ switch ($_REQUEST["operador"]) {
         break;
 }
 
-function editUserButton($id)
+function editUserButton($id, $rolLog, $rol, $usernameLog, $username)
 {
-    return "<input type='image' src='pictures/editar.png' alt='Submit' title='Editar' width='30' height='30' onclick='formEditUser(" . $id . ")'>";
+    if($rolLog == 'JEFE'){
+        return "<input type='image' src='pictures/editar.png' alt='Submit' title='Editar' width='30' height='30' onclick='formEditUser(" . $id . ")'>";
+    }else{
+        if ($usernameLog == $username) {
+            return "<input type='image' src='pictures/editar.png' alt='Submit' title='Editar' width='30' height='30' onclick='formEditUser(" . $id . ")'>";
+        } else {
+            if ($rol == 'SUPERADMIN' || $rol == 'JEFE') {
+                return '';
+            } else {
+                return "<input type='image' src='pictures/editar.png' alt='Submit' title='Editar' width='30' height='30' onclick='formEditUser(" . $id . ")'>";
+            }            
+        }                
+    }
 }
 
-function changePassButton($id)
+function changePassButton($id, $rolLog, $rol, $usernameLog, $username)
 {
-    return "<input type='image' src='pictures/pass.png' alt='Submit' title='Cambiar contraseña' width='30' height='30' onclick='formChangeUser(" . $id . ")'>";
+    if ($rolLog == 'JEFE') {        
+        return "<input type='image' src='pictures/pass.png' alt='Submit' title='Cambiar contraseña' width='30' height='30' onclick='formChangeUser(" . $id . ")'>";
+    }else{
+        if ($usernameLog == $username) {
+            return "<input type='image' src='pictures/pass.png' alt='Submit' title='Cambiar contraseña' width='30' height='30' onclick='formChangeUser(" . $id . ")'>";            
+        }else{
+            if ($rol == 'SUPERADMIN' || $rol == 'JEFE') {
+                return '';
+            } else {
+                return "<input type='image' src='pictures/pass.png' alt='Submit' title='Cambiar contraseña' width='30' height='30' onclick='formChangeUser(" . $id . ")'>";
+            }            
+        }
+    }
 }
 
-function deleteUserButton($id)
+function deleteUserButton($id, $rolLog, $rol, $usernameLog, $username)
 {
-    return "<input type='image' src='pictures/eliminar.png' alt='Submit' title='Eliminar usuario' width='30' height='30' onclick='askDeleteUser(" . $id . ")'>";
+    if ($rolLog == 'JEFE') {
+        if ($usernameLog == $username) {
+            return "";
+        }else{
+            return "<input type='image' src='pictures/eliminar.png' alt='Submit' title='Eliminar usuario' width='30' height='30' onclick='askDeleteUser(" . $id . ")'>";
+        }
+    }else{
+        if ($usernameLog == $username) {
+            return "";          
+        }else{
+            if ($rol == 'SUPERADMIN' || $rol == 'JEFE') {
+                return '';
+            } else {
+                return "<input type='image' src='pictures/eliminar.png' alt='Submit' title='Eliminar usuario' width='30' height='30' onclick='askDeleteUser(" . $id . ")'>";
+            }            
+        }
+    }
+    
 }

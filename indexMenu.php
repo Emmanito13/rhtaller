@@ -116,7 +116,7 @@ $rol = $_SESSION['rol'];
     </div>
 
     <?php 
-        if ($rol == 'SUPERADMIN') {
+        if ($rol == 'SUPERADMIN' || $rol == 'JEFE') {
         ?>
             <div class="contenedor-gestor">
                 <div class="gestion" onclick="goGest()">
