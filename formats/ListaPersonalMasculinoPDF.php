@@ -86,7 +86,7 @@ $data = $request->getEmployeeMale($d);
 
 <body>
     <div class="header">
-        <div class="title">Lista de personal masculino<img class="imgHeader" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/rhtaller/pictures/logo_georgio.png" alt="Without image"></div>
+        <div class="title">Lista de personal masculino<img class="imgHeader" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/recursoshumanos/rhtaller/pictures/logo_georgio.png" alt="Without image"></div>
         <div class="dep"><b>Departamento: </b><?php echo $dep ?></div>
         <div class="subtitle"><u>Lunes-Sabado</u></div>
     </div>

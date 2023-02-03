@@ -81,7 +81,7 @@ $data = $request->getEmployeeSS();
 
 <body>
     <div class="header">
-        <div class="title">Lista de personal con Seguro Social (IMSS)<img class="imgHeader" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/rhtaller/pictures/logo_georgio.png" alt="Without image"></div>        
+        <div class="title">Lista de personal con Seguro Social (IMSS)<img class="imgHeader" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/recursoshumanos/rhtaller/pictures/logo_georgio.png" alt="Without image"></div>        
     </div>
 
     <table border="1">

@@ -141,7 +141,7 @@ if (isset($_GET['dateStart']) && isset($_GET['dateEnd'])) {
         <?php echo $text_footer ?>
     </footer>
     <div class="header">
-        <div class="title">Historial de nóminas<img class="imgHeader" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/rhtaller/pictures/logo_georgio.png" alt="Without image"></div>
+        <div class="title">Historial de nóminas<img class="imgHeader" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/recursoshumanos/rhtaller/pictures/logo_georgio.png" alt="Without image"></div>
     </div>
 
     <div class="sub">
