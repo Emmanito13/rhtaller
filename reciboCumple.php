@@ -8,7 +8,7 @@ $conexion = conexion();
 
 $idE = $_GET['idE'];
 $year = date('Y');
-$cadenaConta = utf8_decode("Recibí de TALLER GERGIO, la cantidad anotada en este recibo, por concepto de pago de PRIMA VACACIONAL, que en el mismo se indica; manifestando bajo protesta de decir la verdad que disfrute del periodo vacacional conforme a la Ley Federal del Trabajo me correspondia, además hago constar que no se me adeuda a la fecha cantidad alguna por tales conceptos.");
+$cadenaConta = utf8_decode("Recibí de TALLER GERGIO, la cantidad anotada en este recibo, por concepto de pago de BONO DE CUMPLEAÑOS, que en el mismo se indica; manifestando bajo protesta de decir la verdad que disfrute del periodo vacacional conforme a la Ley Federal del Trabajo me correspondia, además hago constar que no se me adeuda a la fecha cantidad alguna por tales conceptos.");
 $sqlUpdate = "UPDATE birthday SET estatus = 'pagado' WHERE idE = '$idE' AND year = '$year'";
 $resultUp = mysqli_query($conexion,$sqlUpdate); 
 
@@ -31,7 +31,7 @@ $pdf = new PDF('P','mm','Letter');
 $pdf->AddPage();
 $pdf->SetFillColor(232,232,232);
 $pdf->SetFont("Arial",'I',10);
-$pdf->Cell(190,10,"RECIBO DE PAGO DE VACACIONES 2022, DEL PERIODO COMPRENDIDO POR LOS SGUIENTES DIAS:","T",1,'C');
+$pdf->Cell(190,10,utf8_decode("RECIBO DE PAGO POR BONO DE CUMPLEAÑOS"),"T",1,'C');
 $pdf->SetFont("Arial",'B',8);
 $pdf->Cell(190,5,'Datos del empleado:',0,1,'C',1);
 $pdf->SetFont("Arial",'',8);
