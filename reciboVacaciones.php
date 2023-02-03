@@ -25,13 +25,13 @@ $idE = $_GET['idE'];
 $diasV = $_GET['diasV'];
 $year = date('Y');
 $contaDias;
-$cadenaConta = utf8_decode("Recibí de ABARROTERA HIDALGO DE TEHUACÁN S.A. DE C.V., la cantidad anotada en este recibo, por concepto de pago de PRIMA VACACIONAL, que en el mismo se indica; manifestando bajo protesta de decir la verdad que disfrute del periodo vacacional conforme a la Ley Federal del Trabajo me correspondia, además hago constar que no se me adeuda a la fecha cantidad alguna por tales conceptos.");
+$cadenaConta = utf8_decode("Recibí de TALLER GEORGIO, la cantidad anotada en este recibo, por concepto de pago de PRIMA VACACIONAL, que en el mismo se indica; manifestando bajo protesta de decir la verdad que disfrute del periodo vacacional conforme a la Ley Federal del Trabajo me correspondia, además hago constar que no se me adeuda a la fecha cantidad alguna por tales conceptos.");
 
 class PDF extends FPDF{
     function Header()
     {
         $this->SetFont('Arial','B',13);
-        $this->Cell(200,10,utf8_decode('ABARROTERA HIDALGO DE TEHUACÁN S.A. DE C.V.'),"B",0,'C');
+        $this->Cell(200,10,utf8_decode('TALLER GEORGIO'),"B",0,'C');
         $this->Ln(10);
     }
 }
