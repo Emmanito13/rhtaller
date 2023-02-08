@@ -83,6 +83,13 @@ if($_POST['observaciones'] == ''){
     $observaciones = "'".$_POST['observaciones']."'";    
 }
 
+if($_POST['timecontract'] == ''){
+    $timecontract = 'null';
+}else{
+    $timecontract = "'".$_POST['timecontract']."'";    
+}
+
+
 
 $insertEmpleado = "INSERT INTO empleado (Nombre,Apellidos,Fnacimiento,Sexo,Direccion,Telefono,C_U_R_P,CorreoE,RFC)
                 VALUES('".$nombre."','".$apellidos."','".$fNacimiento."','".$sexo."',".$direccion.",".$nTelefono.",".$curp.",".$correo.",".$rfc.");";
@@ -94,8 +101,8 @@ $insertEmpleado = "INSERT INTO empleado (Nombre,Apellidos,Fnacimiento,Sexo,Direc
                        // ".$sueldo.",".$turno.",'".$fIngreso."',".$contrato.",'".$empresa."','".$departamento."','".$puesto."',".$jefe.",".$observaciones."
                        
 
-$insertTrabajo = "INSERT INTO trabajo (idE,Nlista,Fingreso,Sueldo,idTurno,idEmpresa,idDepartamento,idPuesto,idContrato,idJefe,Observaciones)
-                VALUES($lastId,$noEmpleado,$fIngreso,$sueldo,$turno,$empresa,$departamento,$puesto,$contrato,$jefe,$observaciones);";
+$insertTrabajo = "INSERT INTO trabajo (idE,Nlista,Fingreso,Sueldo,idTurno,idEmpresa,idDepartamento,idPuesto,idContrato,idJefe,Observaciones,timecontract)
+                VALUES($lastId,$noEmpleado,$fIngreso,$sueldo,$turno,$empresa,$departamento,$puesto,$contrato,$jefe,$observaciones,$timecontract);";
                 //echo $insertTrabajo ;
                 $result2 = mysqli_query($conexion,$insertTrabajo);                
 

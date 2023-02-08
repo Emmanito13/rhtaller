@@ -2,7 +2,7 @@
 require_once "conexion.php";
 $conexion=conexion();
 
-$nombre = $_POST['nombre'];
+$nombre = strtoupper($_POST['nombre']);
 
 $insert = "INSERT INTO contrato (nombre) VALUE ('$nombre')";
 

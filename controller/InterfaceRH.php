@@ -582,5 +582,150 @@ class InterfaceRH
         }        
     }
 
+    function getContractsById($id){
+        $query = "SELECT * FROM contrato 
+                    WHERE idContrato = ?";
+
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1,$id);        
+
+        if($result->execute()){
+            if($result->rowCount() > 0){
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;          
+                }
+                return $data;
+            }else{
+                $data = [];
+            }
+        }else{
+            return $data = [];
+        }        
+    }
+
+    function getTimeContract($id){
+        $query = "SELECT idE, timecontract FROM trabajo
+                    WHERE idE = ?";
+
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1,$id);        
+
+        if($result->execute()){
+            if($result->rowCount() > 0){
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;          
+                }
+                return $data;
+            }else{
+                $data = [];
+            }
+        }else{
+            return $data = [];
+        }        
+    }
+
+    function listUsersContracts () {
+
+        $query = "SELECT E.idE, T.Nlista, CONCAT(E.Nombre,' ', E.Apellidos) AS name, 
+                        T.Fingreso, T.timecontract, TIMESTAMPDIFF(DAY, T.Fingreso, CURDATE()) AS timeelapsed, 
+                        T.timecontract - TIMESTAMPDIFF(DAY, T.Fingreso, CURDATE()) as pendingdays 
+                        FROM empleado as E 
+                        INNER JOIN trabajo as T ON E.idE = T.idE 
+                        INNER JOIN contrato as C ON T.idContrato = C.idContrato 
+                        WHERE T.estatus = 'activo' 
+                        AND T.timecontract >= 90 AND T.timecontract <= 180
+                        ORDER BY T.Nlista";
+
+        $result = $this->cnx->prepare($query);
+        if($result->execute()){
+            if($result->rowCount() > 0){
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;          
+                }
+                return $data;
+            }else{
+                $data = [];
+            }
+        }else{
+            return $data = [];
+        }                
+    }
+
+    function updateContract($idE, $duracion){
+        switch($duracion){
+            case 180:
+                $time = 180;
+                $query = "UPDATE trabajo SET timecontract = ? WHERE idE = ?";
+                $result = $this->cnx->prepare($query);
+                $result->bindParam(1, $time);
+                $result->bindParam(2, $idE);
+                if ($result->execute()) {  
+                    return true;
+                } else {
+                    return false;
+                }     
+                break;
+            case 'PLANTA':
+                $namePlanta = 'PLANTA';
+                $queryPlanta = 'SELECT * FROM contrato WHERE nombre = ?';
+                $resultPlanta = $this->cnx->prepare($queryPlanta);
+                $resultPlanta->bindParam(1,$namePlanta);
+                $resultPlanta->execute();
+                while($rowP = $resultPlanta->fetch(PDO::FETCH_ASSOC)){
+                    $dataP[] = $rowP;
+                }
+                $idPlanta = $dataP[0]['idContrato'];            
+                $time = null;
+                $query = "UPDATE trabajo SET timecontract = ?, idContrato = ? WHERE idE = ?;";
+                $result = $this->cnx->prepare($query);
+                $result->bindParam(1, $time);
+                $result->bindParam(2, $idPlanta);
+                $result->bindParam(3, $idE);
+                if ($result->execute()) {  
+                    return true;
+                } else {
+                    return false;
+                } 
+                break;
+        }                   
+    }
+
+    function updateTimeContract($idE, $timecontract){
+        if($timecontract == ''){
+            $time = null;
+        }else{
+            $time = $timecontract;
+        }
+        $query = "UPDATE trabajo SET timecontract = ? WHERE idE = ?";
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1, $time);
+        $result->bindParam(2, $idE);
+        if ($result->execute()) {  
+            return true;
+        } else {
+            return false;
+        }                 
+    }
+    
+    function getDocumentsById ($idE) {
+
+        $query = "SELECT * FROM documentos WHERE idE = ?";
+
+        $result = $this->cnx->prepare($query);
+        $result->bindParam(1, $idE);
+        if($result->execute()){
+            if($result->rowCount() > 0){
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    $data[] = $row;          
+                }
+                return $data;
+            }else{
+                $data = [];
+            }
+        }else{
+            return $data = [];
+        }                
+    }
+
 
 }

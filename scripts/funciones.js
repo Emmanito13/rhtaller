@@ -1,6 +1,4 @@
 
-
-
 function agregaForm(datos) {
     //alert(datos);
     d = datos.split('||');
@@ -193,9 +191,16 @@ function bajaEmpleado(id, motivo, fechaB, observa, liquida) {
     });
 }
 
-const agregaEmpleado = (nombre, apellidos, fNacimiento, sexo, direccion, curp, nTelefono, correo, rfc, fAltaImss, noListaImss, nImss, sueldoImss, noEmpleado, sueldo, turno, fIngreso, contrato, empresa, departamento, puesto, jefe, observaciones) => {
-    cadena = `nombre=${nombre.toUpperCase()}&apellidos=${apellidos.toUpperCase()}&fNacimiento=${fNacimiento}&sexo=${sexo}&direccion=${direccion}&curp=${curp.toUpperCase()}&nTelefono=${nTelefono}&correo=${correo}&rfc=${rfc.toUpperCase()}&fAltaImss=${fAltaImss}&noListaImss=${noListaImss}&nImss=${nImss}&sueldoImss=${sueldoImss}&noEmpleado=${noEmpleado}&sueldo=${sueldo}&turno=${turno}&fIngreso=${fIngreso}&contrato=${contrato}&empresa=${empresa}&departamento=${departamento}&puesto=${puesto}&jefe=${jefe}&observaciones=${observaciones}`;
-
+const agregaEmpleado = async (nombre, apellidos, fNacimiento, sexo, direccion, curp, nTelefono, correo, rfc, fAltaImss, noListaImss, nImss, sueldoImss, noEmpleado, sueldo, turno, fIngreso, contrato, empresa, departamento, puesto, jefe, observaciones) => {
+    const re = await getContractById(contrato);
+    const contract = re[0].nombre;
+    let timecontract;
+    if(contract === '90 DIAS'){
+        timecontract = 90;
+    }else{
+        timecontract = '';
+    }
+    cadena = `nombre=${nombre.toUpperCase()}&apellidos=${apellidos.toUpperCase()}&fNacimiento=${fNacimiento}&sexo=${sexo}&direccion=${direccion}&curp=${curp.toUpperCase()}&nTelefono=${nTelefono}&correo=${correo}&rfc=${rfc.toUpperCase()}&fAltaImss=${fAltaImss}&noListaImss=${noListaImss}&nImss=${nImss}&sueldoImss=${sueldoImss}&noEmpleado=${noEmpleado}&sueldo=${sueldo}&turno=${turno}&fIngreso=${fIngreso}&contrato=${contrato}&empresa=${empresa}&departamento=${departamento}&puesto=${puesto}&jefe=${jefe}&observaciones=${observaciones}&timecontract=${timecontract}`;  
     $.ajax({
         type: "POST",
         url: "altaEmpleado.php",
@@ -216,9 +221,31 @@ const agregaEmpleado = (nombre, apellidos, fNacimiento, sexo, direccion, curp, n
     });
 }
 
+function getContractById(id) {
+    const data = new URLSearchParams(`id=${id}`);
+    const options = {
+      method: 'POST',
+      body: data
+    };
+    return fetch('controller/controllerContratos.php?opc=getContractsById', options)
+      .then(res => res.json())
+      .then(data => data);
+}
+
+function getTimeContract(id) {
+    const data = new URLSearchParams(`id=${id}`);
+    const options = {
+      method: 'POST',
+      body: data
+    };
+    return fetch('controller/controllerContratos.php?opc=getTimeContract', options)
+      .then(res => res.json())
+      .then(data => data);
+}
 
 
-const actualizaDatos = () => {
+
+const actualizaDatos = async () => {
     idE = $('#id').val();
     nombre = $('#nombre').val();
     apellidos = $('#apellidos').val();
@@ -244,6 +271,10 @@ const actualizaDatos = () => {
     jefe = $('#jefe').val();
     observaciones = $('#observaciones').val();
 
+    const re = await getContractById(contrato);
+    const contract = re[0].nombre;
+    updateContract(idE,contract);
+
 
 
     cadena = `idE=${idE}&nombre=${nombre.toUpperCase()}&apellidos=${apellidos.toUpperCase()}&fechaN=${fechaN}&sexo=${sexo}&direccion=${direccion}&curp=${curp.toUpperCase()}&numeroT=${numeroT}&correo=${correo}&rfc=${rfc.toUpperCase()}&fechaAImss=${fechaAImss}&noLImss=${noLImss}&noImss=${noImss}&sueldoImss=${sueldoImss}&Nlista=${Nlista}&sueldo=${sueldo}&turno=${turno}&fechaIAbarrotera=${fechaIAbarrotera}&contrato=${contrato}&empresa=${empresa}&departamento=${departamento}&puesto=${puesto}&jefe=${jefe}&observaciones=${observaciones}`
@@ -261,6 +292,51 @@ const actualizaDatos = () => {
             }
         }
     });
+}
+
+const updateContract = async (idE, contract) => {
+
+    const res = await getTimeContract(idE);
+    //console.log(res);        
+    let timecontract;
+    if(contract === '90 DIAS'){
+        if(res[0].timecontract == null){
+            timecontract = 90          
+        }else{
+            timecontract = res[0].timecontract;
+        }
+    }else{
+        timecontract = '';
+    }
+
+    const data = new URLSearchParams(`idE=${idE}&timecontract=${timecontract}`);
+    const options = {
+        method: 'POST',
+        body: data
+    };
+
+    fetch('controller/controllerContratos.php?opc=updateTimeContract', options)
+        .then(res => res.text())
+        .then(data => {
+        //console.log(data);
+        switch (data) {
+
+            case 'success':      
+            console.log('Se hizó');
+            break;
+
+            case 'error':
+                toastr["error"]("No se pudo renovar el contrato, intentelo mas tarde", "Error inesperado");
+            break;
+        }
+        })
+        .catch(err => {
+        Swal.fire(
+            'Error',
+            err,
+            'error'
+        );
+        });
 }
 
 const limpiar = () => {
@@ -395,6 +471,13 @@ const agregarFotos = async (id, frente, perfil, ine, rutaF, rutaP, rutaI) => {
     var rutaFrente = rutaF;
     var rutaPerfil = rutaP;
     var rutaINE = rutaI;
+    // let fotoFrenteBlob = await comprimirImagen(fotoFrente);
+    // let fotoPerfilBlob = await comprimirImagen(fotoPerfil);
+    // let fotoINEBlob =  await comprimirImagen(fotoINE);
+    // let fotoFrenteFile = new File([fotoFrenteBlob],fotoFrente.name);
+    // let fotoPerfilFile = new File([fotoPerfilBlob],fotoPerfil.name);
+    // let fotoINEFile = new File([fotoINEBlob],fotoINE.name);
+
     var formData = new FormData();
     formData.append('d', idE);
     formData.append('f', (fotoFrente == '') ? fotoFrente : new File([await comprimirImagen(fotoFrente)],fotoFrente.name));

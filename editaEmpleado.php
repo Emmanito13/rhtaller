@@ -166,7 +166,7 @@
         $observaciones = 'null';
     }else{
         $observaciones = "'".$_POST['observaciones']."'";
-    }
+    }    
 
     //-----------------------
     //,Fimss=$fechaAImss,idimss=$noLImss,numeroimss=$noImss,SueldoImss=$sueldoImss,
